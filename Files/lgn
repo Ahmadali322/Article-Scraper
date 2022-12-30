@@ -1,0 +1,37 @@
+#!bin/bash
+lr="$(printf '\033[1;31m')"
+w="$(printf '\033[1;37m')"
+nc="$(printf '\033[0m')"
+if [ -s "/data/data/com.termux/files/usr/etc/dets" ]
+then
+. /data/data/com.termux/files/usr/etc/dets
+else
+read -p "Enter Password - " pass
+if [ $pass = Td210 ]
+then
+t=1
+else
+printf "\n${lr}Wrong password\nExiting With status 1 $nc "
+exit 1
+fi
+read -p "Set your Username - " usrn
+echo "fo=0" > /data/data/com.termux/files/usr/etc/dets.n
+echo "usrn=$usrn" > /data/data/com.termux/files/usr/etc/dets
+fi
+u() {
+echo $usrn
+echo $pass
+if [ -s "/data/data/com.termux/files/usr/etc/dets" ]
+then
+read  -p "do you want to change you Username? " $reusrn
+fi
+if [ -z "$reusrn" ]
+then
+reusrn=n
+fi
+if [ $reusrn = y ]
+then
+rm /data/data/com.termux/files/usr/etc/dets
+bash lgn
+fi
+}
